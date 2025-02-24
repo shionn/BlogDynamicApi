@@ -1,0 +1,10 @@
+.classpath
+.project
+.settings/
+target/
+src/main/webapp/css/font-awesome.css
+src/main/webapp/css/font-awesome.css.map
+src/main/webapp/css/style.css
+src/main/webapp/css/style.css.map
+src/main/webapp/css/fa-4.7/
+src/main/sql/edit.sql
