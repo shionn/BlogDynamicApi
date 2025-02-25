@@ -32,13 +32,21 @@ public class CommentControler {
 	@GetMapping("/comment")
 	public List<CommentDto> getComments(@RequestHeader(name = "page") String page, HttpServletRequest req) {
 		CommentDao dao = session.getMapper(CommentDao.class);
-		String ip = req.getRemoteAddr();
+		String ip = getIp(req);
 			dao.addView(page, ip);
 			session.commit();
 		if (isIndex(page)) {
 			return toDto(dao.listForIndex());
 		}
 		return toDto(dao.listForPage(page));
+	}
+
+	private String getIp(HttpServletRequest req) {
+		String ip = req.getHeader("x-forwarded-for");
+		if (StringUtils.isBlank(ip)) {
+			ip = req.getRemoteAddr();
+		}
+		return ip;
 	}
 
 	private List<CommentDto> toDto(List<Comment> dbos) {
