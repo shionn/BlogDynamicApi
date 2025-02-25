@@ -30,11 +30,21 @@ public class CommentControler {
 	private DiscordBotNotify bot;
 
 	@GetMapping("/comment")
-	public List<CommentDto> getComments(@RequestHeader(name = "page") String page) {
-		if (isIndex(page)) {
-			return toDto(session.getMapper(CommentDao.class).listForIndex());
+	public List<CommentDto> getComments(@RequestHeader(name = "page") String page, HttpServletRequest req) {
+		CommentDao dao = session.getMapper(CommentDao.class);
+		String ip = req.getRemoteAddr();
+		if (!isIgnored(ip)) {
+			dao.addView(page, ip);
+			session.commit();
 		}
-		return toDto(session.getMapper(CommentDao.class).listForPage(page));
+		if (isIndex(page)) {
+			return toDto(dao.listForIndex());
+		}
+		return toDto(dao.listForPage(page));
+	}
+
+	private boolean isIgnored(String ip) {
+		return ip.startsWith("127.0") || ip.startsWith("192.168");
 	}
 
 	private List<CommentDto> toDto(List<Comment> dbos) {

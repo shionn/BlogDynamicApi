@@ -38,7 +38,7 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<url>http://BlogDynamicApi:80/manager/text</url>
+					<url>http://BlogDynamic:80/manager/text</url>
 					<server>Proxmox</server>
 					<path>/</path>
 					<skipTests>true</skipTests>

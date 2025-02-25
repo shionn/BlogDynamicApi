@@ -18,4 +18,7 @@ public interface CommentDao {
 
 	@Insert("INSERT INTO comments (author, content, page) VALUES (#{author}, #{content}, #{page}) ")
 	int addComment(@Param("author") String author, @Param("content") String content, @Param("page") String page);
+
+	@Insert("INSERT INTO view (page, ip) VALUES (#{page}, #{addr})")
+	void addView(@Param("page") String page, @Param("addr") String addr);
 }
