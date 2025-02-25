@@ -51,10 +51,9 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	}
 
 	@EnableWebMvc
-	// @EnableScheduling
+//	@EnableAsync
 	@Configuration
 	@ComponentScan({ "blog.dynamic" })
-	// @PropertySource("classpath:configuration.properties")
 	public static class WebMvcConfig implements WebMvcConfigurer {
 		@Bean
 		public InternalResourceViewResolver viewResolver() {
@@ -65,6 +64,13 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 			return viewResolver;
 		}
 
+//		@Override
+//		public void addCorsMappings(CorsRegistry registry) {
+//			registry
+//					.addMapping("/**")
+//					.allowedMethods("*")
+//					.allowedOrigins("http://localhost", "https://shionn.github.io");
+//		}
 
 		@ControllerAdvice
 		public static class ExceptionHandler extends ResponseEntityExceptionHandler {
