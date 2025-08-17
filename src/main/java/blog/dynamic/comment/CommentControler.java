@@ -42,6 +42,7 @@ public class CommentControler {
 	}
 
 	private String getIp(HttpServletRequest req) {
+		// TODO essayé x-forwarded-host
 		String ip = req.getHeader("x-forwarded-for");
 		if (StringUtils.isBlank(ip)) {
 			ip = req.getRemoteAddr();
