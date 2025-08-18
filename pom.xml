@@ -160,7 +160,7 @@
 
 	<profiles>
 		<profile>
-			<id>proxmox</id>
+			<id>dev</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
